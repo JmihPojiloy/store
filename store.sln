@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domain", "domain", "{F2FFB9CB-D0AB-4F98-9B4D-3BC9FBD0D3AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "domain\Store\Store.csproj", "{9CAA0987-75C8-410E-9514-86CD9FE7BEAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +14,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CAA0987-75C8-410E-9514-86CD9FE7BEAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAA0987-75C8-410E-9514-86CD9FE7BEAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAA0987-75C8-410E-9514-86CD9FE7BEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAA0987-75C8-410E-9514-86CD9FE7BEAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9CAA0987-75C8-410E-9514-86CD9FE7BEAD} = {F2FFB9CB-D0AB-4F98-9B4D-3BC9FBD0D3AB}
 	EndGlobalSection
 EndGlobal
