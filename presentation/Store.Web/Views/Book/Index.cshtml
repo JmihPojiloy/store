@@ -9,3 +9,8 @@
 <p>@Model.Description</p>
 <p>Цена <strong>@Model.Price</strong></p>
 
+<form asp-area="" asp-action="Add" asp-controller="Cart" method="post">
+    <input type="hidden" name="id" value="@Model.Id"/>
+    <button class="btn btn-outline-success" type="submit">В корзину</button>
+</form>
+
