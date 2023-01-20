@@ -18,16 +18,13 @@
           </form>
           <span class="navbar-text m-lg-auto">
                 @{
-                    Cart cart;
-                    if (!Context.Session.TryGetCart(out cart))
-                        cart = new Cart();
-
-                    if(cart.Items.Count == 0){
-                        @:Корзина пуста
+                    if (Context.Session.TryGetCart(out Cart cart) && cart.TotalCount > 0)
+                    {
+                        <a href="">Товаров в корзине @cart.TotalCount на сумму @cart.TotalPrice</a>
                     }
                     else
                     {
-                        @:Товаров в корзине @cart.Items.Count на сумму @cart.Amount. 
+                        @:Корзина пуста
                     }
                 }
           </span>
