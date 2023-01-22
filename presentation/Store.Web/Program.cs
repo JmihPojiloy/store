@@ -3,7 +3,7 @@ using Store.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// AddItem services to the container.
+// AddOrUpdateItem services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace Store
 {
@@ -15,17 +16,12 @@ namespace Store
             get { return items; }
         }
 
-        public int TotalCount
-        {
-            get { return items.Sum(item => item.Count); }
-        }
+        public int TotalCount => items.Sum(item => item.Count);
 
-        public decimal TotalPrice
-        {
-            get { return items.Sum(item => item.Count * item.Price); }
-        }
+        public decimal TotalPrice => items.Sum(item => item.Count * item.Price);
 
-        public Order(int id, IEnumerable<OrderItem> items)        {
+        public Order(int id, IEnumerable<OrderItem> items)
+        {
             if(items == null)
                 throw new ArgumentNullException(nameof(items));
 
@@ -33,22 +29,61 @@ namespace Store
             this.items = new List<OrderItem>(items);
         }
 
-        public void AddItem(Book book, int count)
+        public OrderItem GetItem(int bookId)
+        {
+            int index = items.FindIndex(item => item.BookID == bookId);
+
+            if (index == -1)
+                ThrowBookException("Book not found.", bookId);
+
+            return items[index];
+        }
+
+        public void AddOrUpdateItem(Book book, int count)
         {
             if (book == null)
                 throw new ArgumentNullException(nameof(book));
 
-            var item = items.SingleOrDefault(itemBook => itemBook.BookID == book.Id);
+            int index = items.FindIndex(item => item.BookID == book.Id);
 
-            if(item == null)
-            {
+            if (index == -1)
                 items.Add(new OrderItem(book.Id, count, book.Price));
-            }
             else
-            {
-                items.Remove(item);
-                items.Add(new OrderItem(book.Id, item.Count + count, book.Price));
-            }
+                items[index].Count += count;
+        }
+
+        public void AddBook(Book book)
+        {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book));
+
+            AddOrUpdateItem(book, 1);
+        }
+
+        public void RemoveBook(Book book)
+        {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book));
+             
+            AddOrUpdateItem(book, -1);
+        }
+
+        public void RemoveItem(int bookId)
+        {
+            int index = items.FindIndex(x => x.BookID == bookId);
+            if (index == -1)
+                ThrowBookException("Order does not contain specified item.", bookId);
+
+            items.RemoveAt(index);
+        }
+
+        private void ThrowBookException(string message, int bookId)
+        {
+            var exception = new InvalidOperationException(message);
+
+            exception.Data["BookId"] = bookId;
+
+            throw exception;
         }
     }
 }
