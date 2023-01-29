@@ -14,7 +14,7 @@ namespace Store.Contractors
 
         public int Step { get; }
 
-        public bool IsFinale { get; }
+        public bool IsFinal { get; }
 
         public IReadOnlyList<Field> Fields { get; }
 
@@ -32,7 +32,7 @@ namespace Store.Contractors
             UniqueCode = uniqueCode;
             OrderId = orderId;
             Step = step;
-            IsFinale = isFinale;
+            IsFinal = isFinale;
             Fields = fields.ToArray();
         }
     }

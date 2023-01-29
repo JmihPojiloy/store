@@ -14,7 +14,7 @@
     <input type="hidden" name="cellPhone" value="@Model.CellPhone" />
     <div class="form-group">
         <label for="confirmationCode">Код потдверждения</label>
-        <input type="text" class="form-control" name="confirmationCode" placeholder="0000" />
+        <input type="text" class="form-control" name="code" placeholder="0000" />
         @if (Model.Errors.ContainsKey("code"))
         {
             <small class="form-text text-danger">@Model.Errors["code"]</small>
