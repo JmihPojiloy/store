@@ -52,12 +52,11 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.MapAreaControllerRoute(
-    name: "yandex.kassa",
-    areaName: "YandexKassa",
-    pattern: "YandexKassa/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

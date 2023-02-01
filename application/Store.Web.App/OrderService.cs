@@ -88,11 +88,12 @@ namespace Store.Web.App
             if (count < 1)
                 throw new InvalidOperationException("Too few books to add");
 
-            if(!TryGetOrder(out Order order))
-            {
-                AddOrUpdateBook(order, bookId, count);
-                UpdateSession(order);
-            }
+            if (!TryGetOrder(out Order order))
+                order = orderRepository.Create();
+            
+            AddOrUpdateBook(order, bookId, count);
+            UpdateSession(order);
+            
 
             return Map(order);
         }

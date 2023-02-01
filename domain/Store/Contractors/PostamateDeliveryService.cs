@@ -36,7 +36,7 @@ namespace Store.Contractors
             }
         };
 
-        public string Name => "Postamate";
+        public string Name => "postamate";
 
         public string Title => "Доставка через постаматы в Москве и Санкт-Перербурге";
 

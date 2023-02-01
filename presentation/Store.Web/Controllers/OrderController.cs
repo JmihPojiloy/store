@@ -120,7 +120,7 @@ namespace Store.Web.Controllers
 
             var form = deliveryService.NextForm(step, values);
 
-            if (form.IsFinal)
+            if (!form.IsFinal)
                 return View("DeliveryStep", form);
 
             var delivery = deliveryService.GetDelivery(form);
@@ -129,7 +129,7 @@ namespace Store.Web.Controllers
             var paymentMethods = paymentServices.ToDictionary(service => service.Name,
                                                               service => service.Title);
 
-            return View("PaymentMethods", paymentMethods);
+            return View("PaymentMethod", paymentMethods);
         }
 
 
