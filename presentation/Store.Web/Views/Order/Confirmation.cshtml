@@ -1,4 +1,4 @@
-﻿@model ConfirmationModel
+﻿@model OrderModel
 @{
     ViewData["Title"] = "Подтверждение мобильного";
 }
@@ -9,15 +9,14 @@
     Введите <em>код подтверждения</em> из SMS.
 </p>
 
-<form action="@Url.Action(nameof(OrderController.Confirmate))" method="post">
-    <input type="hidden" name="id" value="@Model.OrderId"/>
+<form action="@Url.Action(nameof(OrderController.ConfirmCellPhone))" method="post">
     <input type="hidden" name="cellPhone" value="@Model.CellPhone" />
     <div class="form-group">
         <label for="confirmationCode">Код потдверждения</label>
-        <input type="text" class="form-control" name="code" placeholder="0000" />
-        @if (Model.Errors.ContainsKey("code"))
+        <input type="text" class="form-control" name="confirmationCode" placeholder="0000" />
+        @if (Model.Errors.ContainsKey("confirmationCode"))
         {
-            <small class="form-text text-danger">@Model.Errors["code"]</small>
+            <small class="form-text text-danger">@Model.Errors["confirmationCode"]</small>
         }
     </div>
     <button type="submit" class="btn btn-success">Проверить</button>

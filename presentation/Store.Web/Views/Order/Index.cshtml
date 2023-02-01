@@ -50,7 +50,6 @@
 
 <form action="@Url.Action(nameof(OrderController.SendConfirmationCode))" method="post">
     <div class="form-group">
-        <input type="hidden" name="id" value="@Model.Id"/>
         <label for="cellPhone">Мобильный телефон</label>
         <input type="text" class="form-control" name="cellPhone" placeholder="+79876543210" value="+79876543210" />
         @if (Model.Errors.ContainsKey("cellPhone"))
