@@ -1,35 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.Memory
+namespace Store.Data.EF
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly List<Order> orders = new List<Order>();
-
         public Order Create()
         {
-            int nextId = orders.Count + 1;
-
-            var order = new Order(nextId, new OrderItem[0]);
-
-            orders.Add(order);
-
-            return order;
+            throw new NotImplementedException();
         }
 
         public Order GetById(int id)
         {
-            return orders.Single(order => order.Id == id);
+            throw new NotImplementedException();
         }
 
         public void Update(Order order)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }
