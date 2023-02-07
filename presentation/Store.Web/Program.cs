@@ -1,11 +1,10 @@
-using Microsoft.Extensions.DependencyInjection;
-using Store;
 using Store.Contractors;
-using Store.Memory;
+using Store.Data.EF;
 using Store.Messages;
 using Store.Web.App;
 using Store.Web.Contractors;
 using Store.YandexKassa;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +19,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddEfRepositories(builder.Configuration.GetConnectionString("Store"));
 
-
-builder.Services.AddSingleton<IBookRepository, BookRepository>();
-builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<INotificationService, DebugNotificationService>();
 builder.Services.AddSingleton<IDeliveryService, PostamateDeliveryService>();
 builder.Services.AddSingleton<IPaymentService, CashPaymentService>();
