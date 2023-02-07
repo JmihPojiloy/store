@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Store.Data.EF
 {
-    class DbContextFactory
+    public class DbContextFactory
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
@@ -16,15 +17,15 @@ namespace Store.Data.EF
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        //public StoreDbContext Create(Type repositoryType)
-        //{
-        //    var services = httpContextAccessor.HttpContext.RequestServices;
+        public StoreDbContext Create(Type repositoryType)
+        {
+            var services = httpContextAccessor.HttpContext.RequestServices;
 
-        //    var dbContexts = services.GetService<Dictionary<Type, StoreDbContext>>();
-        //    if (!dbContexts.ContainsKey(repositoryType))
-        //        dbContexts[repositoryType] = services.GetService<StoreDbContext>();
+            var dbContexts = services.GetService<Dictionary<Type, StoreDbContext>>();
+            if (!dbContexts.ContainsKey(repositoryType))
+                dbContexts[repositoryType] = services.GetService<StoreDbContext>();
 
-        //    return dbContexts[repositoryType];
-        //}
+            return dbContexts[repositoryType];
+        }
     }
 }
