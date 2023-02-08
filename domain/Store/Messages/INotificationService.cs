@@ -14,6 +14,6 @@ namespace Store.Messages
 
         void StartProcess(Order order);
 
-        //Task StartProcessAsync(Order order);
+        Task StartProcessAsync(Order order);
     }
 }
