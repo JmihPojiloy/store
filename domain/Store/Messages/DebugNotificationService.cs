@@ -34,7 +34,5 @@ namespace Store.Messages
 
             return Task.CompletedTask;
         }
-
-
     }
 }
